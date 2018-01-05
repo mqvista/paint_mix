@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>PageTest.qml</file>
+        <file>PageBackGround.qml</file>
+        <file>SlideBar.qml</file>
+        <file>SlideBarForm.ui.qml</file>
+        <file>PageFactory.qml</file>
+        <file>PageFactoryForm.ui.qml</file>
+        <file>PageFactoryLimit.qml</file>
+        <file>PageFactoryControl.qml</file>
+        <file>PageMain.qml</file>
+        <file>PageMainForm.ui.qml</file>
+        <file>PageProfile.qml</file>
+        <file>PageProfileForm.ui.qml</file>
+        <file>PageSettings.qml</file>
+        <file>PageSettingsForm.ui.qml</file>
+        <file>PageFactoryEncoder.qml</file>
+        <file>PageFactoryDebug.qml</file>
+    </qresource>
+</RCC>
