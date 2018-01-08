@@ -21,8 +21,8 @@ SOURCES += main.cpp \
     scalesbig.cpp \
     worker00.cpp \
     model.cpp \
-    pagetestmode.cpp \
-    pagefactorymodel.cpp
+    pagefactorymodel.cpp \
+    motion.cpp
 
 RESOURCES += qml.qrc
 
@@ -43,8 +43,8 @@ HEADERS += \
     scalesbig.h \
     worker00.h \
     model.h \
-    pagetestmode.h \
-    pagefactorymodel.h
+    pagefactorymodel.h \
+    motion.h
 
 
 

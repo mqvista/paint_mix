@@ -8,6 +8,7 @@
 #include <QQmlApplicationEngine>
 #include <DriverGC.h>
 #include <QTimer>
+#include "motion.h"
 
 class Worker00 : public QObject
 {
@@ -16,12 +17,13 @@ class Worker00 : public QObject
     Q_PROPERTY(double scalesBigValue READ getScalesBigValue NOTIFY scalesBigDataChangedSig)
     Q_PROPERTY(double scalesSmallValue READ getScalesSmallValue NOTIFY scalesSmallDataChangedSig)
 public:
-    explicit Worker00(QObject *parent = nullptr);
+    static Worker00 *Instance();
     ~Worker00();
     Q_INVOKABLE void motorAction(quint16 boardNum ,quint8 channelNum, qint32 steps);
-    Q_INVOKABLE void initAsixA();
-    double getScalesBigValue();
-    double getScalesSmallValue();
+    Q_INVOKABLE void initAsix(quint8 asix);
+    Q_INVOKABLE double getScalesBigValue();
+    Q_INVOKABLE double getScalesSmallValue();
+    Q_INVOKABLE void goToMotor(quint8 motor);
 
 
 signals:
@@ -35,9 +37,9 @@ signals:
 public slots:
     void getScalesBigDataSlot(double value, QString unit);
     void getScalesSmallDataSlot(double value, QString unit);
-//    void actoinMotorFromQmlSlot(qint16 board, quint8 channel, qint32 steps);
 
 private:
+    explicit Worker00(QObject *parent = nullptr);
     QThread threadScalesBig;
     QThread threadScalesSmall;
     ScalesSmall scalesSmall;

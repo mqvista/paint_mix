@@ -3,7 +3,7 @@
 PageFactoryModel::PageFactoryModel(QObject *parent) : QObject(parent)
 {
     connect(DriverGC::Instance(), &DriverGC::DebugOut, this, &PageFactoryModel::driverGcDebugSlot);
-    initEncoderTimer();
+    //initEncoderTimer();
     //initLimitTimer();
 }
 
@@ -49,9 +49,10 @@ QVariantList PageFactoryModel::getLimitData()
 void PageFactoryModel::driverGcDebugSlot(QString msg, QDateTime dataTime)
 {
     QString tmp = "Time: " + dataTime.toString("hh:mm:ss:zzz") + "  Msg: " + msg;
+    qDebug () << tmp;
     m_driverGCdebugInfo.append(tmp);
     emit dirverDebugInfoChangedSig();
-    if (m_driverGCdebugInfo.length() >=5)
+    if (m_driverGCdebugInfo.length() >=100)
     {
         m_driverGCdebugInfo.removeFirst();
     }
@@ -68,9 +69,9 @@ void PageFactoryModel::getLimitValueWithTimerSlot()
     m_LimitData.clear();
     for (int i=1; i<7; i++)
     {
-        QBitArray tmpData;
-        DriverGC::Instance()->Inquire_Limit(i, tmpData);
-        m_LimitData.append(tmpData);
+            QBitArray tmpData;
+            DriverGC::Instance()->Inquire_Limit(i, tmpData);
+            m_LimitData.append(tmpData);
     }
     emit LimitDataChanged();
 }
@@ -87,5 +88,13 @@ void PageFactoryModel::initLimitTimer()
 {
     QTimer *timers = new QTimer(this);
     connect(timers, &QTimer::timeout, this, &PageFactoryModel::getLimitValueWithTimerSlot);
-    timers->start(500);
+    timers->start(5000);
+}
+
+void PageFactoryModel::motorAction(quint16 boardNum, quint8 channelNum, qint32 steps)
+{
+    QMetaObject::invokeMethod(Worker00::Instance(), "motorAction", Qt::QueuedConnection,
+                              Q_ARG(quint16, boardNum),
+                              Q_ARG(quint8, channelNum),
+                              Q_ARG(qint32, steps));
 }

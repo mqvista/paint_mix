@@ -1,5 +1,19 @@
 #include "worker00.h"
 
+Worker00 *Worker00::Instance()
+{
+    static QMutex mutex;
+    static QScopedPointer<Worker00> instance;
+    if (Q_UNLIKELY(!instance)) {
+        mutex.lock();
+        if (!instance) {
+            instance.reset(new Worker00);
+        }
+        mutex.unlock();
+    }
+    return instance.data();
+}
+
 Worker00::Worker00(QObject *parent) : QObject(parent)
 {
     scalesSmall.goToThread(&threadScalesSmall);
@@ -15,14 +29,11 @@ Worker00::Worker00(QObject *parent) : QObject(parent)
     connect(this, &Worker00::scalesSmallCloseSig, &scalesSmall ,&ScalesSmall::scalesCloseSlot);
     connect(this, &Worker00::scalesBigCloseSig, &scalesBig ,&ScalesBig::scalesCloseSlot);
 
-    //QObject *iteml = en
-    //connect()
-
-
     DriverGC::Instance()->Open("tty.SLAB_USBtoUART");
 
     //emit scalesSmallOpenSig("tty.usbserial", 2400);
     //emit scalesBigOpenSig("tty.usbserial3", 9600);
+
 }
 
 Worker00::~Worker00()
@@ -47,34 +58,15 @@ void Worker00::getScalesSmallDataSlot(double value, QString unit)
     emit scalesSmallDataChangedSig();
 }
 
-
-
 void Worker00::motorAction(quint16 boardNum ,quint8 channelNum, qint32 steps)
 {
     DriverGC::Instance()->AutoControl_SM_By_Step(boardNum, channelNum, steps);
 }
 
-void Worker00::initAsixA()
+void Worker00::initAsix(quint8 asix)
 {
-//    for (int i=1; i<7; i++)
-//    {
-//        DriverGC::Instance()->Special_Reset(i);
-//    }
-    //16W steps is 90 deg
-
-
-    //设定A轴的限位通道
-    DriverGC::Instance()->Setting_Protect_Limit(6, 1, DriverGC::StepMotor_CW, 0);
-    DriverGC::Instance()->Setting_Protect_Limit(6, 1, DriverGC::StepMotor_CCW, 1);
-    //设定A轴的运动方向
-    DriverGC::Instance()->Setting_SM_RelDir(6, 1, DriverGC::StepMotor_CW);
-    //设定A轴的默认运动速度
-    DriverGC::Instance()->Setting_SM_Speed(6, 1, 5000, 2000);
-    //走A轴的CW极限
-    DriverGC::Instance()->AutoControl_SM_By_Limit(6, 1, DriverGC::StepMotor_CW, 0);
-    //走A轴的CCW极限
-    DriverGC::Instance()->AutoControl_SM_By_Limit(6, 1, DriverGC::StepMotor_CCW, 1);
-
+    Motion::Instance()->initAsix(asix);
+    qDebug() << "ASIX:" << asix;
 }
 
 double Worker00::getScalesBigValue()
@@ -85,6 +77,44 @@ double Worker00::getScalesBigValue()
 double Worker00::getScalesSmallValue()
 {
     return m_SmallScalesValue;
+}
+
+void Worker00::goToMotor(quint8 motor)
+{
+    switch (motor) {
+    case 1:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor01);
+        break;
+    case 2:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor02);
+        break;
+    case 3:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor03);
+        break;
+    case 4:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor04);
+        break;
+    case 5:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor05);
+        break;
+    case 6:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor06);
+        break;
+    case 7:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor07);
+        break;
+    case 8:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor08);
+        break;
+    case 9:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor09);
+        break;
+    case 10:
+        Motion::Instance()->moveToAsix(Motion::scales1Motor10);
+        break;
+    default:
+        break;
+    }
 }
 
 

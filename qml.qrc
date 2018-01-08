@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>PageTest.qml</file>
         <file>PageBackGround.qml</file>
         <file>SlideBar.qml</file>
         <file>SlideBarForm.ui.qml</file>
@@ -18,5 +17,6 @@
         <file>PageSettingsForm.ui.qml</file>
         <file>PageFactoryEncoder.qml</file>
         <file>PageFactoryDebug.qml</file>
+        <file>PageFactoryInitAsix.qml</file>
     </qresource>
 </RCC>

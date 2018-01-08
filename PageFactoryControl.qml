@@ -60,9 +60,7 @@ Item {
                 {
                     steps *= -1;
                 }
-                //console.log("board:" + board + " channel:" + channle + " stpes:" + steps );
-                //rawLayOutControl.motorAction(board, channle, steps);
-                worker00.motorAction(board, channle, steps);
+                pageFactoryMod.motorAction(board, channle, steps);
             }
         }
     }
