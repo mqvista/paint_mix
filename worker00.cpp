@@ -16,50 +16,17 @@ Worker00 *Worker00::Instance()
 
 Worker00::Worker00(QObject *parent) : QObject(parent)
 {
-    scalesSmall.goToThread(&threadScalesSmall);
-    scalesBig.goToThread(&threadScalesBig);
-
-    //链接秤数据信号
-    connect(&scalesSmall, &ScalesSmall::receiveDataPush, this, &Worker00::getScalesSmallDataSlot);
-    connect(&scalesBig, &ScalesBig::receiveDataPush, this, &Worker00::getScalesBigDataSlot);
-    //链接开启信号
-    connect(this, &Worker00::scalesSmallOpenSig, &scalesSmall ,&ScalesSmall::scalesOpenSlot);
-    connect(this, &Worker00::scalesBigOpenSig, &scalesBig ,&ScalesBig::scalesOpenSlot);
-    //链接关闭信号
-    connect(this, &Worker00::scalesSmallCloseSig, &scalesSmall ,&ScalesSmall::scalesCloseSlot);
-    connect(this, &Worker00::scalesBigCloseSig, &scalesBig ,&ScalesBig::scalesCloseSlot);
-
     DriverGC::Instance()->Open("tty.SLAB_USBtoUART");
-
-    //emit scalesSmallOpenSig("tty.usbserial", 2400);
-    //emit scalesBigOpenSig("tty.usbserial3", 9600);
-
 }
 
 Worker00::~Worker00()
 {
-    emit scalesSmallCloseSig();
-    emit scalesBigCloseSig();
-    threadScalesSmall.quit();
-    threadScalesBig.quit();
-}
 
-void Worker00::getScalesBigDataSlot(double value, QString unit)
-{
-    m_BigScalesValue = value;
-    m_BigScalesUnit = unit;
-    emit scalesBigDataChangedSig();
-}
-
-void Worker00::getScalesSmallDataSlot(double value, QString unit)
-{
-    m_SmallScalesValue = value;
-    m_SmallScalesUnit = unit;
-    emit scalesSmallDataChangedSig();
 }
 
 void Worker00::motorAction(quint16 boardNum ,quint8 channelNum, qint32 steps)
 {
+    qDebug() << "Worker00 thread" << QThread::currentThreadId() << endl;
     DriverGC::Instance()->AutoControl_SM_By_Step(boardNum, channelNum, steps);
 }
 
@@ -69,17 +36,9 @@ void Worker00::initAsix(quint8 asix)
     qDebug() << "ASIX:" << asix;
 }
 
-double Worker00::getScalesBigValue()
-{
-    return m_BigScalesValue;
-}
 
-double Worker00::getScalesSmallValue()
-{
-    return m_SmallScalesValue;
-}
 
-void Worker00::goToMotor(quint8 motor)
+void Worker00::moveToAsix(quint8 motor)
 {
     switch (motor) {
     case 1:
@@ -116,5 +75,12 @@ void Worker00::goToMotor(quint8 motor)
         break;
     }
 }
+
+void Worker00::runTest()
+{
+    //Motion::Instance()->moveToAsix(1);
+    Motion::Instance()->dropLiquid(1);
+}
+
 
 

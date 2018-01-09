@@ -18,5 +18,8 @@
         <file>PageFactoryEncoder.qml</file>
         <file>PageFactoryDebug.qml</file>
         <file>PageFactoryInitAsix.qml</file>
+        <file>PageFacotryGoToAsix.qml</file>
+        <file>PageMainRunTest.qml</file>
+        <file>PageProfileDialog.qml</file>
     </qresource>
 </RCC>

@@ -24,6 +24,8 @@ public:
     void initEncoderTimer();
     void initLimitTimer();
     Q_INVOKABLE void motorAction(quint16 boardNum, quint8 channelNum, qint32 steps);
+    Q_INVOKABLE void initAsix(quint8 motor);
+    Q_INVOKABLE void moveToAsix(quint8 motor);
 
 public slots:
     void driverGcDebugSlot(QString msg, QDateTime dataTime);

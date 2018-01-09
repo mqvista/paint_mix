@@ -45,9 +45,16 @@ PageBackGround {
 
     PageFactoryInitAsix {
         id: pageFactoryInitAsix
-        y: 428
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 350
+        anchors.left: parent.left
+        anchors.leftMargin: 650
+    }
+
+    PageFacotryGoToAsix {
+        id: pageFacotryGoToAsix
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 250
         anchors.left: parent.left
         anchors.leftMargin: 650
     }

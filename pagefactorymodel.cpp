@@ -93,8 +93,24 @@ void PageFactoryModel::initLimitTimer()
 
 void PageFactoryModel::motorAction(quint16 boardNum, quint8 channelNum, qint32 steps)
 {
-    QMetaObject::invokeMethod(Worker00::Instance(), "motorAction", Qt::QueuedConnection,
+    QMetaObject::invokeMethod(Worker00::Instance(), "motorAction", Qt::DirectConnection,
                               Q_ARG(quint16, boardNum),
                               Q_ARG(quint8, channelNum),
                               Q_ARG(qint32, steps));
+//    QMetaObject::invokeMethod(Worker00::Instance(), "motorAction", Qt::QueuedConnection,
+//                              Q_ARG(quint16, boardNum),
+//                              Q_ARG(quint8, channelNum),
+    //                              Q_ARG(qint32, steps));
+}
+
+void PageFactoryModel::initAsix(quint8 motor)
+{
+    QMetaObject::invokeMethod(Worker00::Instance(), "initAsix", Qt::DirectConnection,
+                              Q_ARG(quint8, motor));
+}
+
+void PageFactoryModel::moveToAsix(quint8 motor)
+{
+    QMetaObject::invokeMethod(Worker00::Instance(), "moveToAsix", Qt::DirectConnection,
+                              Q_ARG(quint8, motor));
 }

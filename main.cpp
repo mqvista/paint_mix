@@ -1,31 +1,28 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
-#include <worker00.h>
 #include <QThread>
-#include <scalesbig.h>
 #include <QQmlContext>
-#include <model.h>
-#include <QThread>
+#include <QMetaObject>
+
+#include <scalesbig.h>
+
+#include "service.h"
 #include "pagefactorymodel.h"
+#include "pagemainmodel.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
+    Service service;
+    QObject::connect(&engine, &QQmlApplicationEngine::quit, &service, &Service::closeThread);
 
-    QThread workerThread;
-    Worker00::Instance()->moveToThread(&workerThread);
-    workerThread.start();
+    //实例化页面服务对象
     PageFactoryModel pageFactoryMod;
-
-
-
+    PageMainModel pageMainModel;
     engine.rootContext()->setContextProperty("pageFactoryMod", &pageFactoryMod);
-    //engine.rootContext()->setContextProperty("worker00", &worker00);       //添加QML上下文
-
-
+    engine.rootContext()->setContextProperty("pageMainModel", &pageMainModel);
 
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())

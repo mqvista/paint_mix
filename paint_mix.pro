@@ -20,9 +20,11 @@ SOURCES += main.cpp \
     scalessmall.cpp \
     scalesbig.cpp \
     worker00.cpp \
-    model.cpp \
     pagefactorymodel.cpp \
-    motion.cpp
+    motion.cpp \
+    pagemainmodel.cpp \
+    worker01.cpp \
+    service.cpp
 
 RESOURCES += qml.qrc
 
@@ -42,9 +44,11 @@ HEADERS += \
     scalessmall.h \
     scalesbig.h \
     worker00.h \
-    model.h \
     pagefactorymodel.h \
-    motion.h
+    motion.h \
+    pagemainmodel.h \
+    worker01.h \
+    service.h
 
 
 

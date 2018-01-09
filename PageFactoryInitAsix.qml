@@ -21,7 +21,8 @@ Item {
             id: buttonInitAsix
             text: qsTr("InitAsix")
             onClicked: {
-                worker00.initAsix(comboBoxInitAsix.currentText);
+                //worker00.initAsix(comboBoxInitAsix.currentText);
+                pageFactoryMod.initAsix(comboBoxInitAsix.currentText);
             }
         }
     }
