@@ -10,60 +10,137 @@ ApplicationWindow {
     width: 1280
     height: 800
     title: qsTr("Paint Mix")
-    Material.theme: Material.Dark
-    Material.accent: Material.DeepOrange
+
+    Rectangle {
+        id: tittleMain
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.top: parent.top
+        height: 60
+        color: "silver"
+
+        Label {
+            text: "<b>Hiwave</b>"
+            color: "#1e90ff"
+            font.pointSize: 33
+            fontSizeMode: Text.VerticalFit
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+    }
 
     StackLayout {
-        id: stackLayOut
-        anchors.left: slideBar.right
-        anchors.right: parent.right
+        id: stackLayoutMain
         anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        currentIndex: tabBar.currentIndex
+        anchors.right: parent.right
+        anchors.left: parent.left
+        anchors.bottom: tabBarMain.top
+        currentIndex: tabBarMain.currentIndex
 
         PageMain {
 
         }
 
-        PageProfile {
-
-        }
-
-        PageSettings {
-
-        }
-
-        PageFactory{
-
-        }
     }
-
     TabBar {
-        id: tabBar
+        id: tabBarMain
         anchors.right: parent.right
-        anchors.left: slideBar.right
+        anchors.left: parent.left
         anchors.bottom: parent.bottom
-        currentIndex: stackLayOut.currentIndex
+        anchors.rightMargin: 0
+        anchors.bottomMargin: 16
+        anchors.leftMargin: 0
+        currentIndex: stackLayoutMain.currentIndex
         TabButton {
             id: tabButtonMain
             text: qsTr("Main")
+            height: 60
+            background: Rectangle {
+                color: tabBarMain.currentIndex === 0 ? "silver" : "#1e90ff"
+            }
         }
         TabButton {
             id: tabButtonProfile
             text: qsTr("Profile")
+            height: 60
+            background: Rectangle {
+                color: tabBarMain.currentIndex === 1 ? "silver" : "#1e90ff"
+            }
         }
         TabButton {
             id: tabButtonSetting
             text: qsTr("Setting")
+            height: 60
+            background: Rectangle {
+                color: tabBarMain.currentIndex === 2 ? "silver" : "#1e90ff"
+            }
         }
 
         TabButton {
             id: tabButtonFactory
             text: qsTr("Factory Mode")
+            height: 60
+            background: Rectangle {
+                color: tabBarMain.currentIndex === 3 ? "silver" : "#1e90ff"
+            }
         }
     }
 
-    SlideBar {
-        id: slideBar
-    }
+//    Material.theme: Material.Dark
+//    Material.accent: Material.DeepOrange
+
+//    StackLayout {
+//        id: stackLayOut
+//        anchors.left: slideBar.right
+//        anchors.right: parent.right
+//        anchors.top: parent.top
+//        anchors.bottom: parent.bottom
+//        currentIndex: tabBar.currentIndex
+
+//        PageMain {
+
+//        }
+
+//        PageProfile {
+
+//        }
+
+//        PageSettings {
+
+//        }
+
+//        PageFactory{
+
+//        }
+//    }
+
+//    TabBar {
+//        id: tabBar
+//        anchors.right: parent.right
+//        anchors.left: slideBar.right
+//        anchors.bottom: parent.bottom
+//        currentIndex: stackLayOut.currentIndex
+//        TabButton {
+//            id: tabButtonMain
+//            text: qsTr("Main")
+//        }
+//        TabButton {
+//            id: tabButtonProfile
+//            text: qsTr("Profile")
+//        }
+//        TabButton {
+//            id: tabButtonSetting
+//            text: qsTr("Setting")
+//        }
+
+//        TabButton {
+//            id: tabButtonFactory
+//            text: qsTr("Factory Mode")
+//        }
+//    }
+
+//    SlideBar {
+//        id: slideBar
+//    }
 }

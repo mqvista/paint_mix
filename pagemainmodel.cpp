@@ -27,6 +27,7 @@ QStringList PageMainModel::getProfileList()
             m_profileList.append(i.key());
         }
     }
+    emit subListChanged();
     return m_profileList;
 }
 

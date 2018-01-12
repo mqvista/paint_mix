@@ -22,7 +22,6 @@ Item {
 
         Label {
             id: label
-            color: "#ffffff"
             text: qsTr("RUNNING")
             font.pointSize: 33
         }

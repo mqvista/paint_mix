@@ -21,9 +21,11 @@
         <file>PageFacotryGoToAsix.qml</file>
         <file>PageProfileDialog.qml</file>
         <file>PageProfileList.qml</file>
-        <file>PageMainList.qml</file>
+        <file>PageMainArray.qml</file>
         <file>PageSideBarScales.qml</file>
         <file>images/loading.gif</file>
         <file>PageMainLoading.qml</file>
+        <file>PageMainLists.qml</file>
+        <file>PageMainRun.qml</file>
     </qresource>
 </RCC>
