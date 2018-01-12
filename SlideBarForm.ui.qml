@@ -15,4 +15,16 @@ PageBackGround {
         anchors.top: parent.top
         anchors.right: parent.right
     }
+
+    PageSideBarScales {
+        id: pageSideBarScales
+        x: 66
+        y: 170
+        width: 77
+        height: 88
+        anchors.horizontalCenterOffset: -30
+        anchors.verticalCenterOffset: -200
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+    }
 }

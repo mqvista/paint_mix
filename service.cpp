@@ -12,6 +12,11 @@ Service::Service(QObject *parent) : QObject(parent)
     Worker01::Instance()->moveToThread(&worker01Thread);
     worker01Thread.start();
     QMetaObject::invokeMethod(Worker01::Instance(), "openScales", Qt::QueuedConnection);
+
+    //链接秤的数值
+    connect(Worker01::Instance(), &Worker01::scalesSmallDataChangedSig, Worker00::Instance(), &Worker00::getSmallScalesValue);
+    connect(Worker01::Instance(), &Worker01::scalesSmallDataChangedSig, Motion::Instance(), &Motion::getSmallScalesValue);
+
 }
 
 Service::~Service()

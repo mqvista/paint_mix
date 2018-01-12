@@ -21,10 +21,13 @@ SOURCES += main.cpp \
     scalesbig.cpp \
     worker00.cpp \
     pagefactorymodel.cpp \
-    motion.cpp \
     pagemainmodel.cpp \
     worker01.cpp \
-    service.cpp
+    service.cpp \
+    xmlredwrite.cpp \
+    pageprofilemodel.cpp \
+    pagesidebarmodel.cpp \
+    motion.cpp
 
 RESOURCES += qml.qrc
 
@@ -48,7 +51,10 @@ HEADERS += \
     motion.h \
     pagemainmodel.h \
     worker01.h \
-    service.h
+    service.h \
+    xmlredwrite.h \
+    pageprofilemodel.h \
+    pagesidebarmodel.h
 
 
 
@@ -58,3 +64,5 @@ else:unix: LIBS += -L$$PWD/../build-DriverGC-Desktop_Qt_5_10_0_clang_64bit-Debug
 
 INCLUDEPATH += $$PWD/../DriverGC
 DEPENDPATH += $$PWD/../DriverGC
+
+DISTFILES +=

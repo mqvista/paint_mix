@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <DriverGC.h>
+#include <QMap>
+#include "xmlredwrite.h"
 
 class Motion : public QThread
 {
@@ -35,17 +37,29 @@ public:
         scales1Motor09 = 36,
         scales1Motor10 = 0
     };
-    bool dropLiquid(quint8 motor);
+    bool dropLiquid(quint8 motor, quint16 weight);
+    bool stopDrop(quint8 motor);
+    void waitWhileFree(quint16 motor);
+//    bool getDriverGCSerialStatus();
+    bool getBusyStatus();
+
 
 signals:
 
 public slots:
+    void getSmallScalesValue(double value);
+    void getBigScalesValue(double value);
 
 private:
     //单例
     explicit Motion();
     quint8 m_currentMotor;
     quint16 m_currentDegree;
+    bool m_asixMoveState;
+    double m_BigScalesValue = 0;
+    double m_SmallScalesValue = 0;
+    bool m_isBusy = false;
+//    bool systemSerialStatus();
 };
 
 #endif // MOTION_H

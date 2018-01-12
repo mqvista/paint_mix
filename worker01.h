@@ -22,9 +22,9 @@ signals:
     void scalesBigOpenSig(QString name, quint32 baud);
     void scalesSmallCloseSig();
     void scalesBigCloseSig();
-    //发送信号，通知page去更新数据
-    void scalesSmallDataChangedSig();
-    void scalesBigDataChangedSig();
+    //发送信号，通知others去更新数据
+    void scalesSmallDataChangedSig(double value);
+    void scalesBigDataChangedSig(double value);
 
 public slots:
     //接收秤信号发回的数据

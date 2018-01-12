@@ -9,6 +9,8 @@
 #include "service.h"
 #include "pagefactorymodel.h"
 #include "pagemainmodel.h"
+#include "pageprofilemodel.h"
+#include "pagesidebarmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,8 +23,18 @@ int main(int argc, char *argv[])
     //实例化页面服务对象
     PageFactoryModel pageFactoryMod;
     PageMainModel pageMainModel;
+    PageProfileModel pageProfileModel;
+    PageSideBarModel pageSideBarModel;
+
+
     engine.rootContext()->setContextProperty("pageFactoryMod", &pageFactoryMod);
     engine.rootContext()->setContextProperty("pageMainModel", &pageMainModel);
+    engine.rootContext()->setContextProperty("pageProfileModel", &pageProfileModel);
+    engine.rootContext()->setContextProperty("pageSideBarModel", &pageSideBarModel);
+
+    //连接秤信号到sidebar
+    QObject::connect(Worker01::Instance(), &Worker01::scalesSmallDataChangedSig, &pageSideBarModel, &PageSideBarModel::getSmallScalesValue);
+    //QObject::connect(Worker01::Instance(), &Worker01::scalesBigDataChangedSig, &pageSideBar, &PageSideBar::getBigScalesValue);
 
     engine.load(QUrl(QLatin1String("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())

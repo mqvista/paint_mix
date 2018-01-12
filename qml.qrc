@@ -19,7 +19,11 @@
         <file>PageFactoryDebug.qml</file>
         <file>PageFactoryInitAsix.qml</file>
         <file>PageFacotryGoToAsix.qml</file>
-        <file>PageMainRunTest.qml</file>
         <file>PageProfileDialog.qml</file>
+        <file>PageProfileList.qml</file>
+        <file>PageMainList.qml</file>
+        <file>PageSideBarScales.qml</file>
+        <file>images/loading.gif</file>
+        <file>PageMainLoading.qml</file>
     </qresource>
 </RCC>

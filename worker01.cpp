@@ -40,7 +40,7 @@ Worker01::Worker01(QObject *parent) : QObject(parent)
 void Worker01::openScales()
 {
     emit scalesSmallOpenSig("tty.usbserial", 2400);
-    emit scalesBigOpenSig("tty.usbserial24", 9600);
+    //emit scalesBigOpenSig("tty.usbserial24", 9600);
 }
 
 void Worker01::closeScales()
@@ -53,14 +53,14 @@ void Worker01::getScalesBigDataSlot(double value, QString unit)
 {
     m_BigScalesValue = value;
     m_BigScalesUnit = unit;
-    emit scalesBigDataChangedSig();
+    emit scalesBigDataChangedSig(m_BigScalesValue);
 }
 
 void Worker01::getScalesSmallDataSlot(double value, QString unit)
 {
     m_SmallScalesValue = value;
     m_SmallScalesUnit = unit;
-    emit scalesSmallDataChangedSig();
+    emit scalesSmallDataChangedSig(m_SmallScalesValue);
 }
 
 double Worker01::getScalesBigValue()

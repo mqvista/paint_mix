@@ -78,8 +78,44 @@ void Worker00::moveToAsix(quint8 motor)
 
 void Worker00::runTest()
 {
-    //Motion::Instance()->moveToAsix(1);
-    Motion::Instance()->dropLiquid(1);
+    //Motion::Instance()->dropLiquid(1, 5);
+    runFromProfile("xxxxx");
+}
+
+void Worker00::runFromProfile(QString name)
+{
+    XmlRedWrite xmlRedWrite;
+    //获取全部配置
+    QMap<QString, QMap<QString, QString>> params;
+    xmlRedWrite.readProfile(params);
+    //新建找到的配置
+    QMap<QString, QString> param;
+    param = params.value(name);
+//    qDebug() << param;
+
+    //使用map迭代器
+    QMapIterator<QString, QString> i(param);
+    while(i.hasNext())
+    {
+        i.next();
+        if (i.value().mid(0, 1) == "s")
+        {
+            quint8 motor = i.key().mid(4).toInt();
+            quint16 weight = i.value().mid(1).toInt();
+            Worker00::Instance()->moveToAsix(motor);
+            Motion::Instance()->dropLiquid(motor, weight);
+        }
+    }
+}
+
+void Worker00::getSmallScalesValue(double value)
+{
+    m_SmallScalesValue = value;
+}
+
+void Worker00::getBigScalesValue(double value)
+{
+    m_BigScalesValue = value;
 }
 
 
