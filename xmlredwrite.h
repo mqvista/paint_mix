@@ -15,6 +15,10 @@ public:
     bool readConfigXml();
     bool readProfile(QMap<QString, QMap<QString, QString>> &param);
     QMap<QString, QString> readSubProfile(QString name);
+    //新增配色方案，值传递QMap
+    bool addNewProfile(QMap<QString, QString> conf);
+    //覆盖整个配色方案
+    bool writeHolyProfile(QMap<QString, QMap<QString, QString>> param);
 
 
 signals:

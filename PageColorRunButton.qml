@@ -17,7 +17,7 @@ Item {
         font.pointSize: 33
         focusPolicy: Qt.NoFocus
         enabled: {
-            if (pageMainModel.busy == true)
+            if (pageColorConfigModel.busy == true)
             {
                 return false
             }
@@ -25,8 +25,9 @@ Item {
                 return true;
         }
         onClicked: {
-//            console.log(pageMainLists.contactDelegate);
-//            pageMainModel.runFromProfile(pageMainLists.listViewMain.currentItem);
+            console.log(pageColorConfigModel.profileList[pageMainLists.listViewMain.currentIndex]);
+//            pageColorConfigModel.runFromProfile(pageColorConfigModel.profileList[pageMainLists.listViewMain.currentIndex]);
+            pageColorConfigModel.runFromProfile(pageColorConfigModel.profileList[PageColorConfigList.listViewMain.currentIndex]);
         }
     }
 }

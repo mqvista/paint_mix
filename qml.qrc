@@ -11,21 +11,23 @@
         <file>PageFactoryControl.qml</file>
         <file>PageMain.qml</file>
         <file>PageMainForm.ui.qml</file>
-        <file>PageProfile.qml</file>
-        <file>PageProfileForm.ui.qml</file>
         <file>PageSettings.qml</file>
         <file>PageSettingsForm.ui.qml</file>
         <file>PageFactoryEncoder.qml</file>
         <file>PageFactoryDebug.qml</file>
         <file>PageFactoryInitAsix.qml</file>
         <file>PageFacotryGoToAsix.qml</file>
-        <file>PageProfileDialog.qml</file>
-        <file>PageProfileList.qml</file>
-        <file>PageMainArray.qml</file>
+        <file>PageColorConfigArray.qml</file>
         <file>PageSideBarScales.qml</file>
         <file>images/loading.gif</file>
         <file>PageMainLoading.qml</file>
+        <file>PageColorRunButton.qml</file>
+        <file>PageColorConfig.qml</file>
+        <file>PageColorConfigAddDialog.qml</file>
+        <file>PageColorConfigList.qml</file>
+        <file>PageColorConfigRunning.qml</file>
+        <file>PageMainInitSystem.qml</file>
         <file>PageMainLists.qml</file>
-        <file>PageMainRun.qml</file>
+        <file>PageColorConfigGridView.qml</file>
     </qresource>
 </RCC>

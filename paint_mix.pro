@@ -27,7 +27,9 @@ SOURCES += main.cpp \
     xmlredwrite.cpp \
     pageprofilemodel.cpp \
     pagesidebarmodel.cpp \
-    motion.cpp
+    motion.cpp \
+    pagecolorconfigmodel.cpp \
+    pagecolorconfiggridview.cpp
 
 RESOURCES += qml.qrc
 
@@ -54,7 +56,9 @@ HEADERS += \
     service.h \
     xmlredwrite.h \
     pageprofilemodel.h \
-    pagesidebarmodel.h
+    pagesidebarmodel.h \
+    pagecolorconfigmodel.h \
+    pagecolorconfiggridview.h
 
 
 

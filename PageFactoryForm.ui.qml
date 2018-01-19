@@ -5,6 +5,7 @@ PageBackGround {
     id: pageBackGround
     width: 980
     height: 800
+    property alias buttonExit: buttonExit
     tittle: "Factory Mode"
 
     PageFactoryControl {
@@ -57,5 +58,12 @@ PageBackGround {
         anchors.bottomMargin: 250
         anchors.left: parent.left
         anchors.leftMargin: 650
+    }
+
+    Button {
+        id: buttonExit
+        x: 650
+        y: 600
+        text: qsTr("Button")
     }
 }

@@ -4,6 +4,7 @@ ScalesBig::ScalesBig()
 {
 }
 
+
 void ScalesBig::serialStrConver2Data(QString msg)
 {
     //获取称量状态

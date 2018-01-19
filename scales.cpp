@@ -7,6 +7,11 @@ Scales::Scales(QObject *parent) : QObject(parent)
     connect(&serial_port, &QSerialPort::readyRead, this, &Scales::rawSerialReceiveSlot);
 }
 
+Scales::~Scales()
+{
+    close();
+}
+
 void Scales::open(QString port, quint32 baud)
 {
     qDebug() << "Scales thread:" << QThread::currentThreadId() <<endl;
@@ -25,14 +30,20 @@ void Scales::open(QString port, quint32 baud)
     }
     else
     {
-        qDebug() << "Open Failed";
+        qDebug() << "Open Failed" << serial_port.errorString();
     }
 }
 
 void Scales::close()
 {
-    serial_port.close();
+    if (serial_port.isOpen())
+    {
+        serial_port.close();
+        qDebug()<< "isClosing";
+        qDebug()<< "isOpen?:" << serial_port.isOpen();
+    }
 }
+
 
 void Scales::goToThread(QThread *thread)
 {

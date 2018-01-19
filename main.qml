@@ -32,13 +32,24 @@ ApplicationWindow {
 
     StackLayout {
         id: stackLayoutMain
-        anchors.top: parent.top
+        //anchors.top: parent.top
+        anchors.top: tittleMain.bottom
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.bottom: tabBarMain.top
         currentIndex: tabBarMain.currentIndex
 
         PageMain {
+
+        }
+
+        PageColorConfig {
+
+        }
+        PageColorConfig {
+
+        }
+        PageFactory {
 
         }
 

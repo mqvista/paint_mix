@@ -10,6 +10,7 @@
 #include <QTimer>
 #include "motion.h"
 #include <xmlredwrite.h>
+#include <QStringListIterator>
 
 class Worker00 : public QObject
 {
@@ -23,8 +24,13 @@ public:
     Q_INVOKABLE void motorAction(quint16 boardNum ,quint8 channelNum, qint32 steps);
     Q_INVOKABLE void initAsix(quint8 asix);
     Q_INVOKABLE void moveToAsix(quint8 motor);
+    Q_INVOKABLE void moveToAsixBig(quint8 motor);
     Q_INVOKABLE void runTest();
     Q_INVOKABLE void runFromProfile(QString name);
+    Q_INVOKABLE void manualControl(QStringList params);
+    Q_INVOKABLE void openSerial485();
+    Q_INVOKABLE void closeSerial485();
+    Q_INVOKABLE void initSystem();
 
 signals:
 

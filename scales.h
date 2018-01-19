@@ -12,6 +12,7 @@ class Scales : public QObject
     Q_OBJECT
 public:
     explicit Scales(QObject *parent = nullptr);
+    ~Scales();
     void open(QString port, quint32 baud);
     void close(void);
     void goToThread(QThread *thread);

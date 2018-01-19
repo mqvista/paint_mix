@@ -4,6 +4,7 @@
 #include <QObject>
 #include <DriverGC.h>
 #include <QMap>
+#include <QTimer>
 #include "xmlredwrite.h"
 
 class Motion : public QThread
@@ -23,6 +24,7 @@ public:
     bool initAsixM8();
     bool initAsixM9();
     bool initAsixM10();
+    bool initAsixM11();
     bool initAsix(quint8 motor);
     bool moveToAsix(quint16 motor);
     enum scales1Motor :quint16{
@@ -37,11 +39,25 @@ public:
         scales1Motor09 = 36,
         scales1Motor10 = 0
     };
+    enum scales2Motor :quint16{
+        scales2Motor01 = 108,
+        scales2Motor02 = 72,
+        scales2Motor03 = 36,
+        scales2Motor04 = 0,
+        scales2Motor05 = 324,
+        scales2Motor06 = 288,
+        scales2Motor07 = 252,
+        scales2Motor08 = 216,
+        scales2Motor09 = 180,
+        scales2Motor10 = 144
+    };
     bool dropLiquid(quint8 motor, quint16 weight);
     bool stopDrop(quint8 motor);
+    bool addWater(quint8 scalesNum, quint16 weight);
     void waitWhileFree(quint16 motor);
 //    bool getDriverGCSerialStatus();
     bool getBusyStatus();
+    bool moveSmallScalesWaterToBigScalles();
 
 
 signals:

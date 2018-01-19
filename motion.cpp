@@ -200,6 +200,21 @@ bool Motion::initAsixM10()
     return true;
 }
 
+//board6 channel2
+bool Motion::initAsixM11()
+{
+    //设定M10轴的限位通道
+    //DriverGC::Instance()->Setting_Protect_Limit(6, 2, DriverGC::StepMotor_CW, 2);
+    //DriverGC::Instance()->Setting_Protect_Limit(5, 2, DriverGC::StepMotor_CCW, 3);
+    //设定M10轴的运动方向
+    //DriverGC::Instance()->Setting_SM_RelDir(5, 2, DriverGC::StepMotor_CCW);
+    //设定M10轴的默认运动速度
+    DriverGC::Instance()->Setting_SM_Speed(6, 2, 2000, 6000);
+    //走M10轴的CCW极限
+    //DriverGC::Instance()->AutoControl_SM_By_Limit(5, 2, DriverGC::StepMotor_CCW, 3);
+    return true;
+}
+
 //传参，初始化轴
 bool Motion::initAsix(quint8 motor)
 {
@@ -247,6 +262,10 @@ bool Motion::initAsix(quint8 motor)
         break;
     case 10:
         initAsixM10();
+        return true;
+        break;
+    case 11:
+        initAsixM11();
         return true;
         break;
     default:
@@ -309,7 +328,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(1, 1, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //高速档
@@ -323,7 +342,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(1, 1, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
@@ -338,7 +357,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(1, 1, b);
-                    wait(50);
+                    msleep(50);
                     if (m_SmallScalesValue-oldWeight >= weight)
                     {
                         b = false;
@@ -375,7 +394,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(1, 2, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //高速档
@@ -389,7 +408,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(1, 2, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
@@ -404,7 +423,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(1, 2, b);
-                    wait(50);
+                    msleep(50);
                     if (m_SmallScalesValue-oldWeight >= weight)
                     {
                         b = false;
@@ -441,7 +460,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(2, 1, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //高速档
@@ -455,7 +474,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(2, 1, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
@@ -470,7 +489,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(2, 1, b);
-                    wait(50);
+                    msleep(50);
                     if (m_SmallScalesValue-oldWeight >= weight)
                     {
                         b = false;
@@ -507,7 +526,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(2, 2, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //高速档
@@ -521,7 +540,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(2, 2, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
@@ -536,7 +555,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(2, 2, b);
-                    wait(50);
+                    msleep(50);
                     if (m_SmallScalesValue-oldWeight >= weight)
                     {
                         b = false;
@@ -573,7 +592,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(3, 1, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //高速档
@@ -587,7 +606,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(3, 1, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
@@ -602,7 +621,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(3, 1, b);
-                    wait(50);
+                    msleep(50);
                     if (m_SmallScalesValue-oldWeight >= weight)
                     {
                         b = false;
@@ -639,7 +658,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(3, 2, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //高速档
@@ -653,7 +672,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(3, 2, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
@@ -668,7 +687,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(3, 2, b);
-                    wait(50);
+                    msleep(50);
                     if (m_SmallScalesValue-oldWeight >= weight)
                     {
                         b = false;
@@ -705,7 +724,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(4, 1, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //高速档
@@ -719,7 +738,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(4, 1, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
@@ -734,7 +753,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(4, 1, b);
-                    wait(50);
+                    msleep(50);
                     if (m_SmallScalesValue-oldWeight >= weight)
                     {
                         b = false;
@@ -755,7 +774,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
     }
     case 8:
     {
-        double oldWeight = m_SmallScalesValue;
+        double oldWeight = m_BigScalesValue;
         while (m_asixMoveState) {
             //先查询是否在限位极限
             QBitArray lims;
@@ -771,11 +790,11 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(4, 2, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //中速档
-            if (oldWeight+weight-m_SmallScalesValue >1.5)
+            if (oldWeight+weight-m_BigScalesValue >1.5)
             {
                 //设定慢速注射
                 DriverGC::Instance()->Setting_SM_Speed(4, 2, 4000, 12000);
@@ -785,12 +804,12 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(4, 2, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
             //低速挡
-            if (m_SmallScalesValue-oldWeight < weight)
+            if (m_BigScalesValue-oldWeight < weight)
             {
                 //设定慢速注射
                 DriverGC::Instance()->Setting_SM_Speed(4, 2, 300, 1200);
@@ -800,8 +819,8 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(4, 2, b);
-                    wait(50);
-                    if (m_SmallScalesValue-oldWeight >= weight)
+                    msleep(50);
+                    if (m_BigScalesValue-oldWeight >= weight)
                     {
                         b = false;
                         stopDrop(8);
@@ -821,7 +840,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
     }
     case 9:
     {
-        double oldWeight = m_SmallScalesValue;
+        double oldWeight = m_BigScalesValue;
         while (m_asixMoveState) {
             //先查询是否在限位极限
             QBitArray lims;
@@ -837,11 +856,11 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(5, 1, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //中速档
-            if (oldWeight+weight-m_SmallScalesValue >1.5)
+            if (oldWeight+weight-m_BigScalesValue >1.5)
             {
                 //设定慢速注射
                 DriverGC::Instance()->Setting_SM_Speed(5, 1, 4000, 12000);
@@ -851,12 +870,12 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(5, 1, b);
-                    wait(50);
+                    msleep(50);
                 }
                 continue;
             }
             //低速挡
-            if (m_SmallScalesValue-oldWeight < weight)
+            if (m_BigScalesValue-oldWeight < weight)
             {
                 //设定慢速注射
                 DriverGC::Instance()->Setting_SM_Speed(5, 1, 300, 1200);
@@ -866,8 +885,8 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(5, 1, b);
-                    wait(50);
-                    if (m_SmallScalesValue-oldWeight >= weight)
+                    msleep(50);
+                    if (m_BigScalesValue-oldWeight >= weight)
                     {
                         b = false;
                         stopDrop(9);
@@ -887,7 +906,7 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
     }
     case 10:
     {
-        double oldWeight = m_SmallScalesValue;
+        double oldWeight = m_BigScalesValue;
         while (m_asixMoveState) {
             //先查询是否在限位极限
             QBitArray lims;
@@ -903,11 +922,11 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(a)
                 {
                     DriverGC::Instance()->Inquire_Status(5, 2, a);
-                    wait(100);
+                    msleep(100);
                 }
             }
             //中速档
-            if (oldWeight+weight-m_SmallScalesValue >1.5)
+            if (oldWeight+weight-m_BigScalesValue >1.5)
             {
                 //设定慢速注射
                 DriverGC::Instance()->Setting_SM_Speed(5, 2, 4000, 12000);
@@ -917,12 +936,13 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(5, 2, b);
-                    wait(50);
+                    //msleep(50);
+                    msleep(50);
                 }
                 continue;
             }
             //低速挡
-            if (m_SmallScalesValue-oldWeight < weight)
+            if (m_BigScalesValue-oldWeight < weight)
             {
                 //设定慢速注射
                 DriverGC::Instance()->Setting_SM_Speed(5, 2, 400, 1200);
@@ -932,8 +952,8 @@ bool Motion::dropLiquid(quint8 motor, quint16 weight)
                 while(b)
                 {
                     DriverGC::Instance()->Inquire_Status(5, 2, b);
-                    wait(50);
-                    if (m_SmallScalesValue-oldWeight >= weight)
+                    msleep(50);
+                    if (m_BigScalesValue-oldWeight >= weight)
                     {
                         b = false;
                         stopDrop(10);
@@ -1009,6 +1029,60 @@ bool Motion::stopDrop(quint8 motor)
     }
 }
 
+bool Motion::addWater(quint8 scalesNum, quint16 weight)
+{
+    QBitArray sta(24);
+    double oldWeight;
+    bool a;
+    switch (scalesNum) {
+    case 1:
+        sta.fill(false);
+        sta.setBit(0);
+        oldWeight = m_SmallScalesValue;
+        DriverGC::Instance()->Control_ValveOpen(6, sta);
+        DriverGC::Instance()->Control_Motor(6,10000);
+
+        a = true;
+        while (a)
+        {
+
+            if (m_SmallScalesValue - oldWeight >= weight)
+            {
+                a =false;
+                DriverGC::Instance()->Control_ValveClose(6, sta);
+                DriverGC::Instance()->Control_Motor(6,0);
+            }
+            msleep(100);
+        }
+        return true;
+        break;
+    case 2:
+        sta.fill(false);
+        sta.setBit(1);
+        oldWeight = m_BigScalesValue;
+        DriverGC::Instance()->Control_ValveOpen(6, sta);
+        DriverGC::Instance()->Control_Motor(6,10000);
+        a = true;
+        while (a)
+        {
+
+            if (m_BigScalesValue - oldWeight >= weight)
+            {
+                a =false;
+                DriverGC::Instance()->Control_ValveClose(6, sta);
+                DriverGC::Instance()->Control_Motor(6,0);
+            }
+            msleep(100);
+        }
+        return true;
+        break;
+    default:
+        return false;
+        break;
+    }
+    return false;
+}
+
 void Motion::waitWhileFree(quint16 motor)
 {
     bool state = true;
@@ -1017,72 +1091,84 @@ void Motion::waitWhileFree(quint16 motor)
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(1, 1, state);
+            msleep(500);
         }
         break;
     case 2:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(1, 2, state);
+            msleep(500);
         }
         break;
     case 3:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(2, 1, state);
+            msleep(500);
         }
         break;
     case 4:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(2, 2, state);
+            msleep(500);
         }
         break;
     case 5:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(3, 1, state);
+            msleep(500);
         }
         break;
     case 6:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(3, 2, state);
+            msleep(500);
         }
         break;
     case 7:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(4, 1, state);
+            msleep(500);
         }
         break;
     case 8:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(4, 2, state);
+            msleep(500);
         }
         break;
     case 9:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(5, 1, state);
+            msleep(500);
         }
         break;
     case 10:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(5, 2, state);
+            msleep(500);
         }
         break;
     case 11:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(6, 1, state);
+            msleep(500);
         }
         break;
     case 12:
         while (state)
         {
             DriverGC::Instance()->Inquire_Status(6, 2, state);
+            msleep(500);
         }
         break;
     default:
@@ -1096,18 +1182,26 @@ bool Motion::getBusyStatus()
     return m_isBusy;
 }
 
-//bool Motion::getDriverGCSerialStatus()
-//{
-//    DriverGC::Instance()->
-//}
+bool Motion::moveSmallScalesWaterToBigScalles()
+{
+    DriverGC::Instance()->Setting_SM_Speed(6, 2, 4000, 12000);
+    bool a=true;
+    double oldWeight = m_SmallScalesValue;
+    DriverGC::Instance()->Control_SM(6, 2, DriverGC::StepMotor_CW);
+    //如果变化率小于1g，则停止
+    while (a)
+    {
+        sleep(2);
+        if (oldWeight-m_SmallScalesValue <= 1)
+        {
+            a = false;
+            DriverGC::Instance()->Control_SM(6, 2, DriverGC::StepMotor_Stop);
+        }
+        oldWeight = m_SmallScalesValue;
 
-
-
-
-
-
-
-
+    }
+    return true;
+}
 
 
 

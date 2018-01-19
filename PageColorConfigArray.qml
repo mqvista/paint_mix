@@ -10,7 +10,7 @@ Item {
     Rectangle {
         id: rectangle
         color: "#ffffff"
-        radius: 3
+        radius: 5
         anchors.fill: parent
         border.width: 3
         border.color: "Silver"
@@ -29,21 +29,21 @@ Item {
 
                 Label {
                     id: label
-                    text: pageMainModel.subList[0]
+                    text: pageColorConfigModel.subList[0]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
 
                 Label {
                     id: label1
-                    text: pageMainModel.subList[1]
+                    text: pageColorConfigModel.subList[1]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
 
                 Label {
                     id: label2
-                    text: pageMainModel.subList[2]
+                    text: pageColorConfigModel.subList[2]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
@@ -54,21 +54,21 @@ Item {
                 spacing: 80
                 Label {
                     id: label3
-                    text: pageMainModel.subList[3]
+                    text: pageColorConfigModel.subList[3]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
 
                 Label {
                     id: label4
-                    text: pageMainModel.subList[4]
+                    text: pageColorConfigModel.subList[4]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
 
                 Label {
                     id: label5
-                    text: pageMainModel.subList[5]
+                    text: pageColorConfigModel.subList[5]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
@@ -78,26 +78,25 @@ Item {
                 spacing: 80
                 Label {
                     id: label6
-                    text: pageMainModel.subList[6]
+                    text: pageColorConfigModel.subList[6]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
 
                 Label {
                     id: label7
-                    text: pageMainModel.subList[7]
+                    text: pageColorConfigModel.subList[7]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
 
                 Label {
                     id: label8
-                    text: pageMainModel.subList[8]
+                    text: pageColorConfigModel.subList[8]
                     font.pointSize: 33
                     font.family: "Courier"
                 }
             }
         }
     }
-
 }

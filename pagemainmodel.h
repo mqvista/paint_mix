@@ -5,34 +5,28 @@
 #include "worker00.h"
 #include "xmlredwrite.h"
 #include <QMetaObject>
+#include <QMap>
 
 class PageMainModel : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QStringList profileList READ getProfileList NOTIFY profileListChanged)
-    Q_PROPERTY(QVector<QString> subList READ getSubList NOTIFY subListChanged)
     Q_PROPERTY(bool busy READ getBusy NOTIFY busyChanged)
 public:
     explicit PageMainModel(QObject *parent = nullptr);
-    Q_INVOKABLE void runTest();
-    QStringList getProfileList();
-    QVector<QString> getSubList();
-    Q_INVOKABLE void reflushSubList(QString name);
-    Q_INVOKABLE void runFromProfile(QString name);
+    Q_INVOKABLE bool manualControl(QString yl1, QString yl2, QString yl3,
+                       QString yl4, QString yl5, QString yl6,
+                       QString yl7, QString sz1, QString zj1,
+                       QString zj2, QString water1, QString water2);
     bool getBusy();
 
 
 signals:
-    void profileListChanged();
-    void subListChanged();
     void busyChanged();
 
 public slots:
 
 
 private:
-    QStringList m_profileList;
-    QVector<QString> m_subList;
     bool m_isBusy = false;
 };
 

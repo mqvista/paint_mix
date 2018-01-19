@@ -16,10 +16,16 @@ Worker01 *Worker01::Instance()
 
 Worker01::~Worker01()
 {
-    emit scalesSmallCloseSig();
-    emit scalesBigCloseSig();
+    //emit scalesSmallCloseSig();
+    //qDebug()<<"close scs";
+    //emit scalesBigCloseSig();
+    //qDebug()<<"close big";
     threadScalesSmall.quit();
+    threadScalesSmall.wait();
+    qDebug()<<"ss wait";
     threadScalesBig.quit();
+    threadScalesBig.wait();
+    qDebug()<<"sb wait";
 }
 
 Worker01::Worker01(QObject *parent) : QObject(parent)
@@ -40,7 +46,7 @@ Worker01::Worker01(QObject *parent) : QObject(parent)
 void Worker01::openScales()
 {
     emit scalesSmallOpenSig("tty.usbserial", 2400);
-    //emit scalesBigOpenSig("tty.usbserial24", 9600);
+    emit scalesBigOpenSig("tty.usbserial11", 9600);
 }
 
 void Worker01::closeScales()
